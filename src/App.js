@@ -67,7 +67,6 @@ function App() {
 
   //Filter PinCode
 const filterItemsPinCode = (text) => {
-  // const dupData = data;
   const pin = new RegExp(`^${text.target.value}`, "i");
   const date = new RegExp(`^${orderDate}`, "i");
   const value = data.filter(list => pin.test(list.deliveryPincode) && date.test(list.orderDate))
@@ -85,22 +84,25 @@ const filterItemsOrderDate = (text) => {
 }
 
   return (
-    <div style={{ margin: '44px', textAlign: 'center'}}>
-      <h2 style={{ color: 'red', backgroundColor: 'black' }}>AntStack</h2>
-      <h3>
+    <div style={{ margin: '44px'}}>
+      <h2 style={{ color: 'red', backgroundColor: 'black', textAlign: 'center' }}>AntStack</h2>
+      <h3 style={{textAlign: 'center'}}>
         Read CSV file in React
       </h3>
-      <input type="file" accept=".csv,.xlsx,.xls" onChange={handleFileUpload} />
-      <br />
+      <h3 style={{textAlign: 'center'}}>
+        <input type="file" accept=".csv,.xlsx,.xls" onChange={handleFileUpload} />
+      </h3>
+      <br /> <br />
       <label className="inputfield"> Pincode:
         <input placeholder="Enter PinCode" value={pinCode} onChange={text => { filterItemsPinCode(text) }} />
       </label>
-      <label className="inputfield"> Date:
+      <label className="inputfield" style={{marginLeft: '70%'}}> Date:
         <input placeholder="Enter date (dd/mm/yyyy)" value={orderDate} onChange={text => { filterItemsOrderDate(text) }} />
       </label>
-      <DataTable pagination highlightOnHover columns={columns} data={searched ? searched : data}/>
+      <DataTable style={{textAlign: 'center'}} pagination highlightOnHover columns={columns} data={searched ? searched : data}/>
     </div>
   );
 }
 
 export default App;
+ 
