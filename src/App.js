@@ -66,7 +66,7 @@ function App() {
   };
 
   //Filter PinCode
-const filterItemsPinCode = (text) => {
+const filterPinCode = (text) => {
   const pin = new RegExp(`^${text.target.value}`, "i");
   const date = new RegExp(`^${orderDate}`, "i");
   const value = data.filter(list => pin.test(list.deliveryPincode) && date.test(list.orderDate))
@@ -75,7 +75,7 @@ const filterItemsPinCode = (text) => {
 }
 
 //Filter OrderDate
-const filterItemsOrderDate = (text) => {
+const filterOrderDate = (text) => {
   const pin = new RegExp(`^${pinCode}`, "i");
   const date = new RegExp(`^${text.target.value}`, "i");
   const value = data.filter(list => pin.test(list.deliveryPincode) && date.test(list.orderDate))
@@ -93,11 +93,11 @@ const filterItemsOrderDate = (text) => {
         <input type="file" accept=".csv,.xlsx,.xls" onChange={handleFileUpload} />
       </h3>
       <br /> <br />
-      <label className="inputfield"> Pincode:
-        <input placeholder="Enter PinCode" value={pinCode} onChange={text => { filterItemsPinCode(text) }} />
+      <label className="inputfield"> Pincode: 
+        <input placeholder="Enter PinCode" value={pinCode} onChange={text => { filterPinCode(text) }} />
       </label>
-      <label className="inputfield" style={{marginLeft: '70%'}}> Date:
-        <input placeholder="Enter date (dd/mm/yyyy)" value={orderDate} onChange={text => { filterItemsOrderDate(text) }} />
+      <label className="inputfield" style={{marginLeft: '70%'}}> Date: 
+        <input placeholder="Enter date (dd/mm/yyyy)" value={orderDate} onChange={text => { filterOrderDate(text) }} />
       </label>
       <DataTable style={{textAlign: 'center'}} pagination highlightOnHover columns={columns} data={searched ? searched : data}/>
     </div>
